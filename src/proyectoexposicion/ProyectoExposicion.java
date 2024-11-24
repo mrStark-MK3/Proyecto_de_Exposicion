@@ -33,6 +33,8 @@ public class ProyectoExposicion {
             switch (opcion){
                 case 1:
                     
+                    input.nextLine();
+                    
                     if (i < tareas.length){
                     // Crear tarea
 
@@ -59,6 +61,8 @@ public class ProyectoExposicion {
                     // Agregar tarea al array de tareas
                     tareas [i] = new Clase1(nombre_tarea, descripcion, identificador, estado, tiempo_limite);
                     
+                    System.out.println("Tarea creada con exito");
+                    
                     input.nextLine();
                     
                     // El arreglo solo soporta para 5 tareas
@@ -69,6 +73,9 @@ public class ProyectoExposicion {
                         
                         if (eleccion == 's' || eleccion == 'S'){
                             // LLamamos al método de crear tarea
+                            
+                            System.out.println("Tarea creada");
+                            
                         } else {
                             break;
                         }
@@ -79,7 +86,11 @@ public class ProyectoExposicion {
                 case 2:
                     // Mostrar detalles de tarea elegida por el usuario
                     
+                    
                     System.out.print("Imprimir detalles de tarea: (Ingrese numero identifiacador) -> "); int n_tarea = input.nextInt();
+                    
+                    if (tareas[n_tarea] != null){
+                    
                     System.out.println("Nomnre de la tarea: " + tareas[n_tarea].getNombre_tarea());
                     System.out.println("Descripcion de la tarea: " + tareas[n_tarea].getDescripcion());
                     System.out.println("Identificador de la tarea: " + tareas[n_tarea].getIdentificador());
@@ -92,6 +103,10 @@ public class ProyectoExposicion {
                     System.out.println(); // Salto de linea
 
                     System.out.println("Tiempo limite de la tarea: " + tareas[n_tarea].getTiempo_limite());
+                    
+                    } else {
+                        System.out.println("No hay tarea");
+                    }
                     
                     break;
                     
@@ -110,29 +125,31 @@ public class ProyectoExposicion {
                     // Imprimir todas las tareas registradas en el arreglo
                     for (int tareas_registradas = 0; tareas_registradas < tareas.length; tareas_registradas++) {
                         
-                        if (tareas[tareas_registradas] != tarea_default) {
+                        if (tareas[tareas_registradas] != null) {
                             
                             System.out.println("Tarea " + tareas[tareas_registradas].getIdentificador());
                             
                             // En vez de esto hay que usar el método
-                            n_tarea = tareas[tareas_registradas].getIdentificador();
-                            System.out.println("Nomnre de la tarea: " + tareas[n_tarea].getNombre_tarea());
-                            System.out.println("Descripcion de la tarea: " + tareas[n_tarea].getDescripcion());
-                            System.out.println("Identificador de la tarea: " + tareas[n_tarea].getIdentificador());
+                            
+                            System.out.println("Nomnre de la tarea: " + tareas[tareas_registradas].getNombre_tarea());
+                            System.out.println("Descripcion de la tarea: " + tareas[tareas_registradas].getDescripcion());
+                            
                             System.out.print("Estado de la tarea: ");
-                            if (tareas[n_tarea].isEstado() == false){
+                            if (tareas[tareas_registradas].isEstado() == false){
                                 System.out.print("PENDIENTE");
                             } else {
                                 System.out.print("TERMINADA");
                             }
                             System.out.println(); // Salto de linea
 
-                            System.out.println("Tiempo limite de la tarea: " + tareas[n_tarea].getTiempo_limite());
+                            System.out.println("Tiempo limite de la tarea: " + tareas[tareas_registradas].getTiempo_limite());
 
+                        } else {
+                            System.out.print("");
                         }
                         
                     }
-                    System.out.println("Ingresa el numero (identificador) de la tarea para eliminarla -> ");
+                    System.out.print("Ingresa el numero (identificador) de la tarea para eliminarla -> ");
                     int remove = input.nextInt();
                             
                     // Proceso de eliminar
@@ -149,6 +166,9 @@ public class ProyectoExposicion {
                     
                     // Yo voy a hacer el método para marcarla
                     
+                    break;
+                    
+                case 6:
                     break;
                     
                 default:
